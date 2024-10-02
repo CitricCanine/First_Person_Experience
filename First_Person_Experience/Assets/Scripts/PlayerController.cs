@@ -4,7 +4,11 @@ using UnityEngine;
  
 public class PlayerMovement : MonoBehaviour
 {
+    public int gravityType;
+
     public float speed;
+    public float sprintSpeed;
+    public float crouchSpeed;
  
     public float jumpForce;
     public float gravityLimit;
@@ -26,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
  
     public CharacterController controller;
  
+    public GameObject playerBody;
+    public GameObject playerCam;
+
+
     void Awake()
     {
         playerScale = new Vector3(1,1,1);
@@ -36,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         isSprinting = false;
         isCrouching = false;
+
+        gravityType = 0;
     }
  
     // Update is called once per frame
@@ -45,24 +55,47 @@ public class PlayerMovement : MonoBehaviour
        Rotation();
        jump();
        // Crouch();
+
+        GravitySwap();
+
+
+       switch (gravityType)
+       {
+            case 0:
+                gravityLimit = -5;
+                
+                inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+                playerBody.transform.rotation = Quaternion.Euler(0,0,0);
+                playerCam.transform.rotation = Quaternion.Euler(0,0,0);
+            break;
+
+            case 1:
+                gravityLimit = 5;
+
+                inputs = new Vector2(-Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+                playerBody.transform.rotation = Quaternion.Euler(0,0,180);
+                playerCam.transform.rotation = Quaternion.Euler(0,0,180);
+            break;
+       }
     }
  
     void Movement()
     {
-       inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
        Vector3 movement = new Vector3(inputs.x, gravity, inputs.y);
        movement = Quaternion.Euler(0, cam.transform.eulerAngles.y,0) * movement;
        controller.Move(movement * speed * Time.deltaTime);
  
        if(Input.GetKey(KeyCode.LeftShift) && isCrouching == false)
        {
-            speed = 7;
+            speed = sprintSpeed;
             isSprinting = true;
        }
        else if(Input.GetKey(KeyCode.LeftControl) && isSprinting == false)
        {
             isCrouching = true;
-            speed = 2;
+            speed = crouchSpeed;
             gameObject.transform.localScale = smallScale;
        }
        else
@@ -98,6 +131,19 @@ public class PlayerMovement : MonoBehaviour
         if(controller.isGrounded)
         {
             JumpsAvailable = 1;
+        }
+    }
+
+
+    void GravitySwap()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && gravityType == 0)
+        {
+            gravityType = 1;
+        }
+       if (Input.GetKeyDown(KeyCode.F) && gravityType == 1)
+        {
+            gravityType = 0;
         }
     }
 }
