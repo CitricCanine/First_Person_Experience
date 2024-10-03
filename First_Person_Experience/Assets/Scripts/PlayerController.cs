@@ -4,40 +4,43 @@ using UnityEngine;
  
 public class PlayerMovement : MonoBehaviour
 {
-    public int gravityType;
-
+    [Header("Configure Player Variables")]
     public float speed;
     public float sprintSpeed;
     public float crouchSpeed;
- 
+    public int JumpsAvailable = 1;
     public float jumpForce;
+
+
+    [Header("Configure Gravity Variables")]
     public float gravityLimit;
     public float gravity;
     public float gravityMultiplier;
- 
-    public int JumpsAvailable = 1;
- 
-    public float cameraSpeed; // higher number = quicker reaction to rotation
+    public int gravityType;
     Vector2 inputs;
- 
-    public GameObject cam;
-    public GameObject PlayerHead;
- 
+    
+
+    [Header("Miscellaneous")] 
     public bool isSprinting;
     public bool isCrouching;
     private Vector3 smallScale;
     private Vector3 playerScale;
+    public float cameraSpeed; // higher number = quicker reaction to rotation
  
-    public CharacterController controller;
  
+    [Header("GameObjects")] 
     public GameObject playerBody;
     public GameObject playerCam;
+    public CharacterController controller;
+    public GameObject cam;
+    public GameObject PlayerHead;
 
 
     void Awake()
     {
         playerScale = new Vector3(1,1,1);
         smallScale = new Vector3(1,0.75f,1);
+        gravityType = 0;
     }
     void Start()
     {
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         isSprinting = false;
         isCrouching = false;
 
-        gravityType = 0;
+
     }
  
     // Update is called once per frame
@@ -137,12 +140,14 @@ public class PlayerMovement : MonoBehaviour
 
     void GravitySwap()
     {
-        if (Input.GetKeyDown(KeyCode.F) && gravityType == 0)
-        {
+        if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && controller.isGrounded == true)
+        {            
+            jumpForce = -10;
             gravityType = 1;
         }
-       if (Input.GetKeyDown(KeyCode.F) && gravityType == 1)
+       else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1)
         {
+            jumpForce = 10;
             gravityType = 0;
         }
     }

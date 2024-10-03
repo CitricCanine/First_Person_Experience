@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 1000
+    m_MaxSpeed: 300
     m_AccelTime: 0
     m_DecelTime: 0
     m_InputAxisName: Mouse Y
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_HorizontalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 1000
+    m_MaxSpeed: 300
     m_AccelTime: 0
     m_DecelTime: 0
     m_InputAxisName: Mouse X
@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 2104222705}
   - component: {fileID: 2104222704}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1523,8 +1523,8 @@ Transform:
   m_GameObject: {fileID: 2104222702}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0450094, y: -0.06963264, z: -0.04624432, w: 0.9954833}
-  m_LocalPosition: {x: 0.73, y: -0.39, z: 0.806}
-  m_LocalScale: {x: 0.3064213, y: 0.3064213, z: 0.6632644}
+  m_LocalPosition: {x: 0.899, y: -0.435, z: 0.484}
+  m_LocalScale: {x: 0.3064213, y: 0.3064213, z: 0.5677812}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 974848924}
@@ -1570,7 +1570,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c6ec246de4e84034d9116a3d504cf5cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1672,14 +1672,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cbd1003fcb78b4da119664db503612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityType: 0
   speed: 5
   sprintSpeed: 7
   crouchSpeed: 3
-  jumpForce: 2
-  gravityLimit: -9
-  gravity: -9
+  jumpForce: 10
+  gravityLimit: -5
+  gravity: -5
   gravityMultiplier: 10
+  gravityType: 0
+  boolean1: 0
+  boolean2: 0
   JumpsAvailable: 1
   cameraSpeed: 7
   cam: {fileID: 963194225}
