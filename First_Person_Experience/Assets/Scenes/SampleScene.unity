@@ -5551,7 +5551,7 @@ MonoBehaviour:
   gravityType: 0
   isSprinting: 0
   isCrouching: 0
-  cameraSpeed: 7
+  cameraSpeed: 18
   playerBody: {fileID: 2132470310}
   playerCam: {fileID: 366817591}
   controller: {fileID: 2132470311}
@@ -5754,7 +5754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5095385675319003343, guid: ff9d3c6c6b3fe124f9dac294bf53473d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.86
+      value: -4.62
       objectReference: {fileID: 0}
     - target: {fileID: 5095385675319003343, guid: ff9d3c6c6b3fe124f9dac294bf53473d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5762,7 +5762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5095385675319003343, guid: ff9d3c6c6b3fe124f9dac294bf53473d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.07
+      value: 74.58
       objectReference: {fileID: 0}
     - target: {fileID: 5095385675319003343, guid: ff9d3c6c6b3fe124f9dac294bf53473d, type: 3}
       propertyPath: m_LocalRotation.w

@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
        switch (gravityType)
        {
             case 0:
-                gravityLimit = -5;
+                gravityLimit = -3;
                 
                 inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             break;
 
             case 1:
-                gravityLimit = 5;
+                gravityLimit = 3;
 
                 inputs = new Vector2(-Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -86,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
  
     void Movement()
     {
-       Vector3 movement = new Vector3(inputs.x, gravity, inputs.y);
-       movement = Quaternion.Euler(0, cam.transform.eulerAngles.y,0) * movement;
-       controller.Move(movement * speed * Time.deltaTime);
+       Vector3 movement = new Vector3(inputs.x, gravity, inputs.y);//custom gravity and velocity
+       movement = Quaternion.Euler(0, cam.transform.eulerAngles.y,0) * movement;//move in the direction you are looking at
+       controller.Move(movement * speed * Time.deltaTime);//moves when you input the movement keys
  
        if(Input.GetKey(KeyCode.LeftShift) && isCrouching == false)
        {
@@ -125,10 +125,15 @@ public class PlayerMovement : MonoBehaviour
         {
             gravity -= Time.deltaTime * gravityMultiplier;
         }
- 
-        if(Input.GetButtonDown("Jump") && JumpsAvailable > 0 && isCrouching == false)
+
+        if(Input.GetButtonDown("Jump") && JumpsAvailable > 0 && isCrouching == false && gravityType == 0)
         {
-            gravity = Mathf.Sqrt(jumpForce);
+            gravity = Mathf.Sqrt(jumpForce);//changes gravity to to jump force for a brief moment before gravity limit kicks in
+            JumpsAvailable--;
+        }
+        if(Input.GetButtonDown("Jump") && JumpsAvailable > 0 && isCrouching == false && gravityType == 1)
+        {
+            gravity = Mathf.Sqrt(jumpForce) * -1;
             JumpsAvailable--;
         }
         if(controller.isGrounded)
