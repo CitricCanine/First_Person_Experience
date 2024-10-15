@@ -145,12 +145,12 @@ public class PlayerMovement : MonoBehaviour
 
     void GravitySwap()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && gravityType == 0 && controller.isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && controller.isGrounded == true)
         {            
             jumpForce = -10;
             gravityType = 1;
         }
-       else if (Input.GetKeyDown(KeyCode.Mouse0) && gravityType == 1)
+       else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1)
         {
             jumpForce = 10;
             gravityType = 0;

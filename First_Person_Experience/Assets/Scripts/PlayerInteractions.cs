@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    public GameObject hand;
+    public GameObject cam;
+    public float lookDistance;
+    public LayerMask layerMask;
+    RaycastHit hit;
+
     public Collider triggerColl;
     GameManager gmSc;
 
+
+
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +31,7 @@ public class PlayerInteractions : MonoBehaviour
         {
             gmSc.infoText.text = " ";
         }
-        if (triggerColl != null && Input.GetKeyDown(KeyCode.E))
+        if (triggerColl != null && Input.GetKeyDown(KeyCode.F))
         {
             if(triggerColl.gameObject.CompareTag("Lock") && gmSc.hasKey)
             {
@@ -35,6 +45,36 @@ public class PlayerInteractions : MonoBehaviour
                 leverSC.isOn = !leverSC.isOn;
             }
         }
+
+        // WEAPON CAST
+        if (hand.transform.childCount == 1 && Input.GetKeyDown(KeyCode.Q))
+        {
+            hand.transform.GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            hand.transform.GetChild(0).gameObject.transform.parent = null;
+        }
+        else if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, lookDistance, layerMask))
+        {
+            gmSc.infoText.text = "Press F To Pick Up";
+
+            if (hand.transform.childCount == 0 && Input.GetKeyDown(KeyCode.F))
+            {
+                hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                hit.collider.gameObject.transform.parent = hand.transform;
+                hit.collider.gameObject.transform.position = hand.transform.position;
+                hit.collider.gameObject.transform.rotation = hand.transform.rotation;
+
+            }
+        }
+
+        else
+        {
+        if (triggerColl == null)
+            {
+                gmSc.infoText.text = " ";
+            }
+        }
+
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -50,7 +90,7 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (gmSc.hasKey)
             {
-                gmSc.infoText.text = "Press E To Interact";
+                gmSc.infoText.text = "Press F To Interact";
             }
             else
             {
@@ -60,7 +100,7 @@ public class PlayerInteractions : MonoBehaviour
     
         if (other.gameObject.CompareTag("Lever"))
         {
-            gmSc.infoText.text = "Press E To Switch";
+            gmSc.infoText.text = "Press F To Switch";
         }
     }
 
