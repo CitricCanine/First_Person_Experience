@@ -16,7 +16,7 @@ public class RayCastWeapon : MonoBehaviour
 
     void Start()
     {
-       // muzzleFlash.SetActive(false);
+       muzzleFlash.SetActive(false);
         active = false;
     }
 
@@ -30,7 +30,7 @@ public class RayCastWeapon : MonoBehaviour
             {
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, shootDistance, layerMask))
                     {
-                        //muzzleFlash.SetActive(true);
+                        muzzleFlash.SetActive(true);
                         hit.collider.gameObject.GetComponent<Health>().hp -= damage;
                     }
             }
@@ -54,6 +54,6 @@ public class RayCastWeapon : MonoBehaviour
 
         muzzleFlash.transform.rotation = Quaternion.Euler(-90, Random.Range(0, 90f), 0);
 
-        //muzzleFlash.SetActive(false);
+        muzzleFlash.SetActive(false);
     }
 }

@@ -131,11 +131,6 @@ public class PlayerMovement : MonoBehaviour
             gravity = Mathf.Sqrt(jumpForce);//changes gravity to to jump force for a brief moment before gravity limit kicks in
             JumpsAvailable--;
         }
-        if(Input.GetButtonDown("Jump") && JumpsAvailable > 0 && isCrouching == false && gravityType == 1)
-        {
-            gravity = Mathf.Sqrt(jumpForce) * -1;
-            JumpsAvailable--;
-        }
         if(controller.isGrounded)
         {
             JumpsAvailable = 1;
