@@ -15,7 +15,6 @@ public class PlayerInteractions : MonoBehaviour
 
 
 
-
     
     // Start is called before the first frame update
     void Start()
@@ -49,7 +48,10 @@ public class PlayerInteractions : MonoBehaviour
         // WEAPON CAST
         if (hand.transform.childCount == 1 && Input.GetKeyDown(KeyCode.Q))
         {
-            hand.transform.GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            GameObject currentObject;
+            currentObject = hand.transform.GetChild(0).gameObject;
+            currentObject.GetComponent<Rigidbody>().isKinematic = false;
+            currentObject.GetComponent<Rigidbody>().AddForce(-currentObject.transform.up * 10, ForceMode.Impulse);
             hand.transform.GetChild(0).gameObject.transform.parent = null;
         }
         else if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, lookDistance, layerMask))

@@ -10,7 +10,10 @@ public class RayCastWeapon : MonoBehaviour
     public LayerMask layerMask;
     public GameObject cam;
     RaycastHit hit;
+
     public GameObject muzzleFlash;
+    public GameObject bullet;
+    public GameObject shootPoint;
 
     bool active;
 
@@ -21,7 +24,6 @@ public class RayCastWeapon : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         if (transform.parent != null)
@@ -52,7 +54,7 @@ public class RayCastWeapon : MonoBehaviour
 
         active = false;
 
-        muzzleFlash.transform.rotation = Quaternion.Euler(-90, Random.Range(0, 90f), 0);
+        muzzleFlash.transform.localRotation = Quaternion.Euler(0, Random.Range(0, 90f), 90);
 
         muzzleFlash.SetActive(false);
     }
