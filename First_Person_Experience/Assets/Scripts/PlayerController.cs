@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityMultiplier;
     public int gravityType;
     Vector2 inputs;
-    
+    public bool gravaCollider;
 
     [Header("Miscellaneous")] 
     public bool isSprinting;
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         isSprinting = false;
         isCrouching = false;
-
+        gravaCollider = false;
 
     }
  
@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
        {
             case 0:
                 gravityLimit = -3;
+                gravity = -3;
                 
                 inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -137,15 +138,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("GravityCollider")) 
+        {
+            gravaCollider = true;
+            Debug.Log("SWAP");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("GravityCollider")) 
+        {
+            gravaCollider = false;
+            Debug.Log("NO SWAP");
+        }
+    }
 
     void GravitySwap()
     {
-        if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && controller.isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && gravaCollider == true)
         {            
             jumpForce = -10;
             gravityType = 1;
         }
-       else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1)
+       else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1 && gravaCollider == true)
         {
             jumpForce = 10;
             gravityType = 0;
