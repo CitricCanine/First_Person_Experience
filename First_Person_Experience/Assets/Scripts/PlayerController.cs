@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             gravity = Mathf.Sqrt(jumpForce);//changes gravity to to jump force for a brief moment before gravity limit kicks in
             JumpsAvailable--;
+            Debug.Log("JUMP");
         }
         if(controller.isGrounded)
         {
@@ -160,12 +161,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && gravaCollider == true)
         {            
-            jumpForce = -10;
+            jumpForce = 10;
             gravityType = 1;
         }
        else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1 && gravaCollider == true)
         {
-            jumpForce = 10;
+            jumpForce = -10;
             gravityType = 0;
         }
     }
