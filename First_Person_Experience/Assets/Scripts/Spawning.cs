@@ -12,7 +12,7 @@ public class Spawning : MonoBehaviour
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoints");
-        InvokeRepeating("Spawn", 2f, spawnRate);
+        InvokeRepeating("Spawn", 3f, spawnRate);
     }
 
     void Spawn()

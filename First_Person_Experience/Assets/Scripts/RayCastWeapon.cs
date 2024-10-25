@@ -13,8 +13,8 @@ public class RayCastWeapon : MonoBehaviour
 
     public GameObject muzzleFlash;
     public GameObject bullet;
-    public GameObject shootPoint;
-
+    //public GameObject shootPoint;
+    public ParticleSystem particleFlash;
     bool active;
 
     void Start()
@@ -33,6 +33,7 @@ public class RayCastWeapon : MonoBehaviour
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, shootDistance, layerMask))
                     {
                         muzzleFlash.SetActive(true);
+                        particleFlash.Play();
                         hit.collider.gameObject.GetComponent<Health>().hp -= damage;
                     }
             }
