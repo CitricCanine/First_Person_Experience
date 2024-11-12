@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
-public class PlayerMovement : MonoBehaviour
+using UnityEngine.SceneManagement;
+
+public class PlayerController : MonoBehaviour
 {
     [Header("Configure Player Variables")]
     public float speed;
@@ -26,7 +27,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 smallScale;
     private Vector3 playerScale;
     public float cameraSpeed; // higher number = quicker reaction to rotation
- 
+    public string spawnPoint;
+     public Animator bbox;
+
  
     [Header("GameObjects")] 
     public GameObject playerBody;
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public GameObject cam;
     public GameObject PlayerHead;
+    public GameObject flashLight;
 
 
     void Awake()
@@ -161,13 +165,39 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && gravaCollider == true)
         {            
-            jumpForce = 10;
+            jumpForce = -10;
             gravityType = 1;
         }
        else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1 && gravaCollider == true)
         {
-            jumpForce = -10;
+            jumpForce = 10;
             gravityType = 0;
         }
     }
+
+    public IEnumerator ResetPos ()
+    {
+        bbox.SetBool("out", true);
+
+        transform.position = GameObject.Find(spawnPoint).transform.position;
+        yield return new WaitForSeconds(.1f);
+        controller.enabled = true;
+    }
+
+    public IEnumerator LoadNewScene(string levelName)
+    {
+        bbox.SetBool("out", false);
+
+        controller.enabled = false;
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(levelName);
+    }
+
+    //public Flashlight()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.G) && flashLight.activeSelf)
+    //    {
+    //        flashLight.SetActive
+    //    }
+    //}
 }
