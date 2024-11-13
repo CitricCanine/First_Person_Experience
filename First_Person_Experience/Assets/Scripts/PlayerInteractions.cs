@@ -30,7 +30,7 @@ public class PlayerInteractions : MonoBehaviour
         {
             gmSc.infoText.text = " ";
         }
-        if (triggerColl != null && Input.GetKeyDown(KeyCode.F))
+        if (triggerColl != null && Input.GetKeyDown(KeyCode.E))
         {
             if(triggerColl.gameObject.CompareTag("Lock") && gmSc.hasKey)
             {
@@ -56,9 +56,9 @@ public class PlayerInteractions : MonoBehaviour
         }
         else if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, lookDistance, layerMask))
         {
-            gmSc.infoText.text = "Press F To Pick Up";
+            gmSc.infoText.text = "Press E To Pick Up";
 
-            if (hand.transform.childCount == 0 && Input.GetKeyDown(KeyCode.F))
+            if (hand.transform.childCount == 0 && Input.GetKeyDown(KeyCode.E))
             {
                 hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 hit.collider.gameObject.transform.parent = hand.transform;
@@ -92,7 +92,7 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (gmSc.hasKey)
             {
-                gmSc.infoText.text = "Press F To Interact";
+                gmSc.infoText.text = "Press E To Interact";
             }
             else
             {
@@ -102,7 +102,7 @@ public class PlayerInteractions : MonoBehaviour
     
         if (other.gameObject.CompareTag("Lever"))
         {
-            gmSc.infoText.text = "Press F To Switch";
+            gmSc.infoText.text = "Press E To Switch";
         }
     }
 

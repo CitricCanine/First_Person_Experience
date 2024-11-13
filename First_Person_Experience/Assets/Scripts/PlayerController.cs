@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerScale;
     public float cameraSpeed; // higher number = quicker reaction to rotation
     public string spawnPoint;
-     public Animator bbox;
+    public Animator bbox;
+    bool activeLight;
 
- 
     [Header("GameObjects")] 
     public GameObject playerBody;
     public GameObject playerCam;
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
         isSprinting = false;
         isCrouching = false;
         gravaCollider = false;
+        activeLight = false;
 
     }
  
@@ -61,8 +62,8 @@ public class PlayerController : MonoBehaviour
        Movement();
        Rotation();
        jump();
-       // Crouch();
-
+       //Crouch();
+        FlashLight();
         GravitySwap();
 
 
@@ -193,11 +194,17 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
-    //public Flashlight()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.G) && flashLight.activeSelf)
-    //    {
-    //        flashLight.SetActive
-    //    }
-    //}
+    void FlashLight()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && activeLight == false)
+        {
+            flashLight.SetActive(true);
+            activeLight = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && activeLight == true)
+        {
+           flashLight.SetActive(false); 
+           activeLight = false;
+        }
+    }
 }
