@@ -9,6 +9,7 @@ TagManager:
   - Lever
   - GravityCollider
   - SpawnPoints
+  - Spikes
   layers:
   - Default
   - TransparentFX

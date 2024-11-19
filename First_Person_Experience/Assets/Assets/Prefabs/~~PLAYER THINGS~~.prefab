@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8167372911423924194
 Transform:
   m_ObjectHideFlags: 0
@@ -1096,12 +1096,11 @@ MonoBehaviour:
   gravityLimit: -5
   gravity: -5
   gravityMultiplier: 10
-  gravityType: 0
-  gravaCollider: 0
   isSprinting: 0
   isCrouching: 0
   cameraSpeed: 18
   spawnPoint: StartPos
+  bbox: {fileID: 0}
   playerBody: {fileID: 4405939897963091940}
   playerCam: {fileID: 7880443602085771351}
   controller: {fileID: 1144829080315160916}

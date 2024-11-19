@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class MoveEnemy : MonoBehaviour
 {
 
-    public float damageAmount, attackDelay, attackRate,attackDistance, health;
-
+    public int damageAmount, attackDistance, health;
+    public float attackRate, attackDelay;
     GameObject playerObject;
 
     NavMeshAgent navAgent;
@@ -42,7 +42,7 @@ public class MoveEnemy : MonoBehaviour
 
     void Attack()
     {
-        playerObject.GetComponent<PlayerHealth>().health -= damageAmount;
+        playerObject.GetComponent<Health>().hp -= damageAmount;
         attackDelay = Time.time + attackRate;
 
     }

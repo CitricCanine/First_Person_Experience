@@ -17,9 +17,8 @@ public class PlayerController : MonoBehaviour
     public float gravityLimit;
     public float gravity;
     public float gravityMultiplier;
-    public int gravityType;
     Vector2 inputs;
-    public bool gravaCollider;
+
 
     [Header("Miscellaneous")] 
     public bool isSprinting;
@@ -44,14 +43,13 @@ public class PlayerController : MonoBehaviour
     {
         playerScale = new Vector3(1,1,1);
         smallScale = new Vector3(1,0.75f,1);
-        gravityType = 0;
+
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         isSprinting = false;
         isCrouching = false;
-        gravaCollider = false;
         activeLight = false;
 
     }
@@ -64,34 +62,12 @@ public class PlayerController : MonoBehaviour
        jump();
        //Crouch();
         FlashLight();
-        GravitySwap();
 
-
-       switch (gravityType)
-       {
-            case 0:
-                gravityLimit = -3;
-                gravity = -3;
-                
-                inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-                playerBody.transform.rotation = Quaternion.Euler(0,0,0);
-                playerCam.transform.rotation = Quaternion.Euler(0,0,0);
-            break;
-
-            case 1:
-                gravityLimit = 3;
-
-                inputs = new Vector2(-Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-                playerBody.transform.rotation = Quaternion.Euler(0,0,180);
-                playerCam.transform.rotation = Quaternion.Euler(0,0,180);
-            break;
-       }
     }
  
     void Movement()
     {
+       inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
        Vector3 movement = new Vector3(inputs.x, gravity, inputs.y);//custom gravity and velocity
        movement = Quaternion.Euler(0, cam.transform.eulerAngles.y,0) * movement;//move in the direction you are looking at
        controller.Move(movement * speed * Time.deltaTime);//moves when you input the movement keys
@@ -132,7 +108,7 @@ public class PlayerController : MonoBehaviour
             gravity -= Time.deltaTime * gravityMultiplier;
         }
 
-        if(Input.GetButtonDown("Jump") && JumpsAvailable > 0 && isCrouching == false && gravityType == 0)
+        if(Input.GetButtonDown("Jump") && JumpsAvailable > 0 && isCrouching == false)
         {
             gravity = Mathf.Sqrt(jumpForce);//changes gravity to to jump force for a brief moment before gravity limit kicks in
             JumpsAvailable--;
@@ -144,35 +120,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter (Collider other)
     {
-        if (other.gameObject.CompareTag("GravityCollider")) 
+        if (other.gameObject.CompareTag("Spikes"))
         {
-            gravaCollider = true;
-            Debug.Log("SWAP");
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("GravityCollider")) 
-        {
-            gravaCollider = false;
-            Debug.Log("NO SWAP");
-        }
-    }
-
-    void GravitySwap()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && gravityType == 0 && gravaCollider == true)
-        {            
-            jumpForce = -10;
-            gravityType = 1;
-        }
-       else if (Input.GetKeyDown(KeyCode.E) && gravityType == 1 && gravaCollider == true)
-        {
-            jumpForce = 10;
-            gravityType = 0;
+            StartCoroutine(ResetPos());
         }
     }
 
@@ -182,6 +134,23 @@ public class PlayerController : MonoBehaviour
 
         transform.position = GameObject.Find(spawnPoint).transform.position;
         yield return new WaitForSeconds(.1f);
+        controller.enabled = true;
+    }
+
+    public IEnumerator ResetOnDeath()
+    {
+        bbox.SetBool("out", false);
+        
+        controller.enabled = false;
+        
+        yield return new WaitForSeconds(1f);
+
+        transform.position = GameObject.Find(spawnPoint).transform.position;
+        
+        yield return new WaitForSeconds(.1f);
+        
+        bbox.SetBool("out", true);
+
         controller.enabled = true;
     }
 
