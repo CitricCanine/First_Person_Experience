@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         isSprinting = false;
         isCrouching = false;
-        activeLight = false;
+        activeLight = true;
 
     }
  
