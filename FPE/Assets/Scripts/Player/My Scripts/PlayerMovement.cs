@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float speedSprint;
 
+    public float accelleration;
     public bool ifSprint;
 
     public float groundDrag;
@@ -93,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             ifSprint = true;
             if (moveSpeed < speedSprint)
             {
-                moveSpeed += Time.deltaTime * 12;
+                moveSpeed += Time.deltaTime * accelleration;
             }
         }
         else
@@ -101,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             ifSprint = false;
             if (moveSpeed > 7.099999f)
             {
-                moveSpeed -= Time.deltaTime * 12;
+                moveSpeed -= Time.deltaTime * accelleration;
             }
         }
 
