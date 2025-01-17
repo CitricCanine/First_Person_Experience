@@ -5,27 +5,39 @@ using UnityEngine;
 public class SpellManager : MonoBehaviour
 {
     public float drainMana;
-
-    public bool[] currentSpell;
-
     public float manaCost;
-    public void Update() {
-        BoolValues();
-        currentSpell[] = GetComponent<PlayerMagicSystem>().selectedSpell;
 
-        manaCost = drainMana;
+    public List<GameObject> spells;
+    public int spellID;
+
+    // public float manaCost;
+
+
+
+
+
+    void Start()
+    {
+        spellID = 1;
+    }
+
+    public void Update() {
+        // BoolValues();
+        // currentSpell[0].gameObject = GetComponent<PlayerMagicSystem>().selectedSpell;
+        // currentSpell[GetComponent<PlayerMagicSystem>().selectedSpell];
+        // manaCost = drainMana;
 
     }
 
-    public void BoolValues()
+    public void SpellValues()
     {
-        if (currentSpell[0])
+        if (spellID == 1)
         {
-            manaCost = 20;
+            spells[0];
         }
-        if (currentSpell[1])
+        if (spellID == 2)
         {
-            manaCost = 50;
+            spells[1];
         }
     }
 }

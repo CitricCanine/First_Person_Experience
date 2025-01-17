@@ -6,6 +6,37 @@ using UnityEngine.UIElements;
 
 public class PlayerMagicSystem : MonoBehaviour
 {
+
+
+    /// <summary>
+    /// GET RID OF SPELLMANAGER
+    /// DONT USE ARRAYS, MAKE LIKE 4 DIFFERENT PUBLIC GAMEOBJECT THINGS FOR SPELL, SPELL1, 2, 3 ECT, ASWELL AS ANOTHER ONE CALLED CURRENTSPELL
+    /// MAKE AND IF STATEMENT SOMEWHERE TO ASSIGN THE SPELLS TO AN ID, THEN IF THAT ID MATCHES THAT SPELL, THAT SPELL IS CURRENTSPELL,
+    /// (MAKE SURE THEYRE BOTH GAMEOBJECTS OR IT WONT WORK)
+    /// </summary>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public int currentSpellInUse;
+
+    public float shootingForce;
+
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float currentMana;
     [SerializeField] private float manaRechargeRate = 2f;
@@ -16,27 +47,33 @@ public class PlayerMagicSystem : MonoBehaviour
     public Rotate castPointRotate;
     public GameObject[] spells;
 
+    public int selectedSpell;
     
-
-
-    void Awake() 
+    public void Awake() 
     {
-        
-    }    
-    
+        selectedSpell = 0;
+    }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currentMana > GetComponent<SpellManager>().drainMana)
+        for (int i = 0; i < 4; i++)
         {
-            GameObject spell = Instantiate(spells[0], castPoint.position, castPoint.rotation);
-            spell.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
-            currentMana -= spell.GetComponent<SpellManager>().drainMana;
-            if (currentMana < GetComponent<SpellManager>().drainMana)
+            // spellToCast = spells[i];
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            float cost = transform.GetComponent<PlayerMagicSystem>().spells[currentSpellInUse].gameObject.GetComponent<Spell>().manaCost;
+            if (currentMana >= cost)
             {
-                print("NO MANA");
+                currentMana -= cost;
+                // run the spawning of it here
+                GameObject spell = Instantiate(spells[selectedSpell], castPoint.position, castPoint.rotation);
+                spell.GetComponent<Rigidbody>().AddForce(castPoint.transform.forward * shootingForce, ForceMode.Impulse);
+            }
+            else
+            {
+                // UI prompt "not enough mana"
             }
         }
 
