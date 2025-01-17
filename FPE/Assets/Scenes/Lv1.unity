@@ -4478,8 +4478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpellInUse: 0
   shootingForce: 30
-  maxMana: 100
-  currentMana: 100
+  maxMana: 9999
+  currentMana: 9999
   manaRechargeRate: 2
   spellToCast: 0
   castPoint: {fileID: 8498560}
@@ -4487,6 +4487,11 @@ MonoBehaviour:
   - {fileID: 4564167134145687196, guid: 7668712d370754e458f1b63495d7818a, type: 3}
   - {fileID: 4564167134145687196, guid: 3933a9b253c490542aadda799fa07e0e, type: 3}
   selectedSpell: 0
+  spellGameobjectInUse: 0
+  Spell1: {fileID: 4564167134145687196, guid: 7668712d370754e458f1b63495d7818a, type: 3}
+  Spell2: {fileID: 4564167134145687196, guid: 3933a9b253c490542aadda799fa07e0e, type: 3}
+  Spell3: {fileID: 4564167134145687196, guid: a69dbc80c3bd3b446ad1d8a49ca6ab45, type: 3}
+  spellInUse: {fileID: 0}
 --- !u!1001 &656636129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9493,7 +9498,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190833580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 140a6e252735ef743a8eb1f27ec44fb0, type: 3}
   m_Name: 

@@ -15,24 +15,6 @@ public class PlayerMagicSystem : MonoBehaviour
     /// (MAKE SURE THEYRE BOTH GAMEOBJECTS OR IT WONT WORK)
     /// </summary>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public int currentSpellInUse;
 
     public float shootingForce;
@@ -48,27 +30,41 @@ public class PlayerMagicSystem : MonoBehaviour
     public GameObject[] spells;
 
     public int selectedSpell;
+
+
+    public float spellObjectInUse;
+    public GameObject Spell1;
+    public GameObject Spell2;
+    public GameObject Spell3;
+    public GameObject spellInUse;
     
     public void Awake() 
     {
+        spellObjectInUse = 1;
+        currentMana = maxMana;
         selectedSpell = 0;
     }
 
     void Update()
     {
+
+        SpellSwap();
+        spellSlot();
+
+
         for (int i = 0; i < 4; i++)
         {
             // spellToCast = spells[i];
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetButtonDown("Fire1"))
         {
-            float cost = transform.GetComponent<PlayerMagicSystem>().spells[currentSpellInUse].gameObject.GetComponent<Spell>().manaCost;
+            float cost = transform.GetComponent<PlayerMagicSystem>().spellInUse.gameObject.GetComponent<Spell>().manaCost;
             if (currentMana >= cost)
             {
                 currentMana -= cost;
                 // run the spawning of it here
-                GameObject spell = Instantiate(spells[selectedSpell], castPoint.position, castPoint.rotation);
+                GameObject spell = Instantiate(spellInUse, castPoint.position, castPoint.rotation);
                 spell.GetComponent<Rigidbody>().AddForce(castPoint.transform.forward * shootingForce, ForceMode.Impulse);
             }
             else
@@ -77,8 +73,40 @@ public class PlayerMagicSystem : MonoBehaviour
             }
         }
 
-
+        void SpellSwap()
+        {
+            if (spellObjectInUse == 1)
+            {
+                spellInUse = Spell1;
+            }
+            else if (spellObjectInUse == 2)
+            {
+                spellInUse = Spell2;
+            }
+            else if (spellObjectInUse == 3)
+            {
+                spellInUse = Spell3;
+            }
         
+        }
+
+        void spellSlot()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                spellObjectInUse = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                spellObjectInUse = 2;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                spellObjectInUse = 3;
+            }
+        } 
+
+
         // bool isSpellCastHelddown
     }
 }

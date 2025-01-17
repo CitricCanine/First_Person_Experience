@@ -33,11 +33,11 @@ public class SpellManager : MonoBehaviour
     {
         if (spellID == 1)
         {
-            spells[0];
+            // spells[];
         }
         if (spellID == 2)
         {
-            spells[1];
+            // spells[1];
         }
     }
 }
