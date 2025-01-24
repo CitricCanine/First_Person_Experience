@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelfDestruct : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float timer;
     void Start()
     {
         DestroyObjectDelayed();
@@ -19,6 +19,6 @@ public class SelfDestruct : MonoBehaviour
     void DestroyObjectDelayed()
     {
         // Kills the game object in 5 seconds after loading the object
-        Destroy(gameObject, 5);
+        Destroy(gameObject, timer);
     }
 }

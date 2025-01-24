@@ -9,6 +9,7 @@ TagManager:
   - Key
   - SpawnPoints
   - GravityCollider
+  - Spell
   layers:
   - Default
   - TransparentFX

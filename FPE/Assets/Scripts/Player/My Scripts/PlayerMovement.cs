@@ -49,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // FlashLight();
+        MyInput();
+        SpeedControl();
+        Quit();
+    
+    
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -61,10 +67,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.drag = 0;
         }
-        
-        FlashLight();
-        MyInput();
-        SpeedControl();
     }
 
     private void FixedUpdate() {
@@ -152,5 +154,13 @@ public class PlayerMovement : MonoBehaviour
            flashLight.SetActive(false); 
            activeLight = false;
        }
+    }
+
+    void Quit()
+    {
+        if (Input.GetButtonDown("escape"))
+        {
+            Application.Quit();
+        }
     }
 }

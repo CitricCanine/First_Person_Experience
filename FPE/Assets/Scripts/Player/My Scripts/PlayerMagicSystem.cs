@@ -15,23 +15,23 @@ public class PlayerMagicSystem : MonoBehaviour
     /// (MAKE SURE THEYRE BOTH GAMEOBJECTS OR IT WONT WORK)
     /// </summary>
 
-    public int currentSpellInUse;
 
-    public float shootingForce;
+
+    [Header("Mana")]
 
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float currentMana;
     [SerializeField] private float manaRechargeRate = 2f;
 
+    [Header("Instantiating Miscellaneous")]
     public int spellToCast;
     public Transform castPoint;
 
     public Rotate castPointRotate;
-    public GameObject[] spells;
-
-    public int selectedSpell;
 
 
+    // public int currentSpellInUse;
+    [Header("Spells")]
     public float spellObjectInUse;
     public GameObject Spell1;
     public GameObject Spell2;
@@ -42,7 +42,6 @@ public class PlayerMagicSystem : MonoBehaviour
     {
         spellObjectInUse = 1;
         currentMana = maxMana;
-        selectedSpell = 0;
     }
 
     void Update()
@@ -65,7 +64,7 @@ public class PlayerMagicSystem : MonoBehaviour
                 currentMana -= cost;
                 // run the spawning of it here
                 GameObject spell = Instantiate(spellInUse, castPoint.position, castPoint.rotation);
-                spell.GetComponent<Rigidbody>().AddForce(castPoint.transform.forward * shootingForce, ForceMode.Impulse);
+                spell.GetComponent<Rigidbody>().AddForce(castPoint.transform.forward * transform.GetComponent<PlayerMagicSystem>().spellInUse.gameObject.GetComponent<Spell>().shootingForce, ForceMode.Impulse);
             }
             else
             {

@@ -115,7 +115,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4029114999081370172}
   - component: {fileID: 1282994506056720607}
-  - component: {fileID: 4869500685368486718}
   - component: {fileID: 4152995242112722904}
   - component: {fileID: 883646346319232006}
   m_Layer: 0
@@ -168,23 +167,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4869500685368486718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4564167134145687196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4520d2bf58eca24bb3c9c4e9b417cee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drainMana: 15
-  manaCost: 15
-  spells:
-  - {fileID: 4564167134145687196}
-  spellID: 0
 --- !u!114 &4152995242112722904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaCost: 15
+  damage: 0
+  randA: 0
+  randB: 0
 --- !u!114 &883646346319232006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,3 +195,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79953f8cf0148a04ead97ea43cc1229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
