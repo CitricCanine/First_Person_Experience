@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 4152995242112722904}
   - component: {fileID: 883646346319232006}
   - component: {fileID: 8513497972150806801}
+  - component: {fileID: 162806930276241899}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -398,7 +399,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4152995242112722904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,9 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 15
   shootingForce: 20
-  damage: 0
-  randA: 0
-  randB: 0
+  damage: 10
 --- !u!114 &883646346319232006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,3 +440,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24df090c61f178644bec2d4a279d4a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &162806930276241899
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564167134145687196}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

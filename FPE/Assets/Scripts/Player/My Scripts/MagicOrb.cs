@@ -13,6 +13,7 @@ public class MagicOrb : MonoBehaviour
     bool active;
     bool scaleActive;
     bool orbEnd;
+    bool lightOff;
 
     void Start()
     {
@@ -22,6 +23,8 @@ public class MagicOrb : MonoBehaviour
         StartCoroutine(LightUp());
         orbLight.intensity = 0f;
         StartCoroutine(Shrink());
+        
+        gameObject.transform.rotation = Quaternion.Euler(Random.Range(360, -360), Random.Range(360, -360), Random.Range(360, -360));
     }
 
     void Update()
@@ -45,12 +48,19 @@ public class MagicOrb : MonoBehaviour
         {
         orb.transform.localScale -= new Vector3(1f, 1f, 1f) * (Time.deltaTime * shrinkSpeed);
         }
+        if (lightOff == true && active == false)
+        {
+        orbLight.intensity += Time.deltaTime * (-lightSpeed * 3);
+        }
     }
 
     IEnumerator LightUp()
     {
-         yield return new WaitForSeconds(1.13f);
+        yield return new WaitForSeconds(1.13f);
         active = true;
+        yield return new WaitForSeconds(2.87f);
+        active = false;
+        lightOff = true;
         
     }
 

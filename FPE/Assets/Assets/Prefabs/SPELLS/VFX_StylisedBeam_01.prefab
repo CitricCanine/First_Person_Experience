@@ -280,8 +280,6 @@ MonoBehaviour:
   manaCost: 15
   shootingForce: 0
   damage: 0
-  randA: 0
-  randB: 0
 --- !u!114 &2758758551499985208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,3 +305,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f867537173a827d4a8fc1099fe72b4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beam: {fileID: 5462497443981009710}
+  hand: {fileID: 0}

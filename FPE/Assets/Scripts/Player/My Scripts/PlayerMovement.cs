@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Quit()
     {
-        if (Input.GetButtonDown("escape"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }

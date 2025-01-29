@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 public class Beam : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject beam;
+    public Transform hand;
+    void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        hand = GameObject.Find("FirePoint").transform;
+        beam.transform.parent = hand.transform;
     }
 }
