@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject flashLight;
     Vector3 moveDirection;
 
+    public GameObject playerBody;
+    public bool isCrouching;
+
     Rigidbody rb;
 
     void Start()
@@ -44,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         ifSprint = false;
         readyToJump = true;
         activeLight = false;
+        isCrouching = false;
     }
 
     // Update is called once per frame
@@ -115,6 +119,15 @@ public class PlayerMovement : MonoBehaviour
         else if (!grounded)
         {
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+    }
+
+    private void PlayerCrouch()
+    {
+    if (Input.GetKey(KeyCode.LeftControl && isCrouching == false)
+        {
+            playerBody.transform.localScale = new Vector3(1f, 0.3f, 1f)
+            isCrouching = true;
         }
     }
 
