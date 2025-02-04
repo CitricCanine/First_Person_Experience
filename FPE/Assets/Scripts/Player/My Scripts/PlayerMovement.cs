@@ -124,9 +124,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerCrouch()
     {
-    if (Input.GetKey(KeyCode.LeftControl && isCrouching == false)
+    if (Input.GetKey(KeyCode.LeftControl)&& isCrouching == false)
         {
-            playerBody.transform.localScale = new Vector3(1f, 0.3f, 1f)
+            playerBody.transform.localScale = new Vector3(1f, 0.3f, 1f);
             isCrouching = true;
         }
     }
